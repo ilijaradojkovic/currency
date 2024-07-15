@@ -1,0 +1,11 @@
+
+
+currency-api:
+  key: d62a574e27594811fe201e5e
+
+server:
+  port: 8002
+
+spring:
+  application:
+    name: Currency
