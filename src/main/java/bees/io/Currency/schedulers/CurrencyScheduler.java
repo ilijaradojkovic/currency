@@ -13,6 +13,7 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
+//https://kurs.resenje.org/doc/#introduction
 public class CurrencyScheduler {
 
 
