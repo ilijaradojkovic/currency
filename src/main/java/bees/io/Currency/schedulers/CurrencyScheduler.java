@@ -20,7 +20,7 @@ public class CurrencyScheduler {
     private final CurrencyRest currencyRest;
 
     //    @Scheduled(cron = "0 0 8 * * ?")
-    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "0 0 9 * * ?")
     public void updateCurrency() {
         Map<ECurrency, Map<ECurrency, Double>> conversionRates = new HashMap<>();
 
