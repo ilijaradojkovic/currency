@@ -12,6 +12,7 @@ public class CurrencyRest {
 
     @Value("${currency-api.key}")
     private String apiKey="API";
+
     private String baseURL="https://v6.exchangerate-api.com/v6/API_KEY/latest/CURRENCY";
 
     private final WebClient webClient;

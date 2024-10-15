@@ -6,6 +6,6 @@ import java.util.Map;
 
 public interface CurrencyService {
 
-    Map<ECurrency, Double> getCurrencies(ECurrency eCurrency);
+    Double getCurrencies(ECurrency eCurrency);
 
 }

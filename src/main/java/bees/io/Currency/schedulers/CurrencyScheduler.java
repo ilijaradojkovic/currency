@@ -24,22 +24,29 @@ public class CurrencyScheduler {
     public void updateCurrency() {
         Map<ECurrency, Map<ECurrency, Double>> conversionRates = new HashMap<>();
 
-        Map<ECurrency, Double> rates = new HashMap<>();
 
-            CurrencyAPIResponse conversionRate = currencyRest.getConversionRate(CurrencyGlobal.targetCurrency);
-            if (conversionRate == null) {
-                return;
+        for (ECurrency eCurrency : CurrencyGlobal.targetCurrency) {
+            Map<ECurrency, Double> rates = new HashMap<>();
+
+            try {
+                CurrencyAPIResponse conversionRate = currencyRest.getConversionRate(eCurrency);
+                if (conversionRate == null) {
+                    continue;
+                }
+
+                for (Map.Entry<String, Double> stringDoubleEntry : conversionRate.getConversionRates().entrySet()) {
+                    rates.put(ECurrency.valueOf(stringDoubleEntry.getKey()), stringDoubleEntry.getValue());
+                }
+
+
+                conversionRates.put(eCurrency, rates);
+            }catch (Exception e){
+                System.out.println("GRESKA KOD KONVERZIJE " + e.getMessage() );
             }
+        }
 
 
-            for (Map.Entry<String, Double> element : conversionRate.getConversionRates().entrySet()) {
-                rates.put(ECurrency.valueOf(element.getKey()), element.getValue());
-            }
-            rates.clear();
-            conversionRates.put(ECurrency.EUR, rates);
-
-
-
+        System.out.println(conversionRates);
         CurrencyGlobal.conversionRates=conversionRates;
 
     }

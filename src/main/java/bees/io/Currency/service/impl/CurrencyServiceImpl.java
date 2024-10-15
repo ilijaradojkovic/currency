@@ -16,9 +16,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     private  final CurrencyRest currencyRest;
 
     @Override
-    public Map<ECurrency, Double> getCurrencies(ECurrency eCurrency) {
+    public Double getCurrencies(ECurrency eCurrency) {
 
 
-        return CurrencyGlobal.conversionRates.get(eCurrency);
+        return CurrencyGlobal.conversionRates.get(ECurrency.EUR).get(eCurrency);
     }
 }

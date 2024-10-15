@@ -17,9 +17,9 @@ public class CurrencyController
     private final CurrencyService currencyService;
 
     @GetMapping()
-    public ResponseEntity<CurrencyResponse> getCurrencies(@RequestParam("targetCurrency") ECurrency eCurrency){
-        Map<ECurrency, Double> currencies = currencyService.getCurrencies(eCurrency);
-        return ResponseEntity.ok(new CurrencyResponse(currencies));
+    public ResponseEntity<Double> getCurrencies(@RequestParam("targetCurrency") ECurrency eCurrency){
+        Double  currencies = currencyService.getCurrencies(eCurrency);
+        return ResponseEntity.ok(currencies);
     }
 
 }
