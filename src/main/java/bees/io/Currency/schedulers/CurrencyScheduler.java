@@ -5,6 +5,7 @@ import bees.io.Currency.globals.CurrencyGlobal;
 import bees.io.Currency.rest.CurrencyAPIResponse;
 import bees.io.Currency.rest.CurrencyRest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 //https://kurs.resenje.org/doc/#introduction
+@Slf4j
 public class CurrencyScheduler {
 
 
@@ -22,6 +24,8 @@ public class CurrencyScheduler {
     //    @Scheduled(cron = "0 0 8 * * ?")
     @Scheduled(cron = "0 0 9 * * ?")
     public void updateCurrency() {
+        log.info("Updating currency rates");
+
         Map<ECurrency, Map<ECurrency, Double>> conversionRates = new HashMap<>();
 
 
@@ -41,7 +45,7 @@ public class CurrencyScheduler {
 
                 conversionRates.put(eCurrency, rates);
             }catch (Exception e){
-                System.out.println("GRESKA KOD KONVERZIJE " + e.getMessage() );
+                log.error("Error while updating currency rates: {}", e.getMessage());
             }
         }
 
